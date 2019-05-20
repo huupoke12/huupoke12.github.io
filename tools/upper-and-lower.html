@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<p>Input:</p>
+<textarea oninput="convert()" id="input">
+</textarea>
+<p>Output:</p>
+<textarea id="output">
+</textarea>
+
+<script>
+input_DOM = document.getElementById("input");
+output_DOM = document.getElementById("output");
+
+function convert() {
+	input = input_DOM.value;
+	output = [];
+	for (var i = 0; i < input.length; i++) {
+		if (i % 2 == 0) {
+			output.push(input[i].toLowerCase());
+		} else {
+			output.push(input[i].toUpperCase());
+		}
+	}
+	output_DOM.value = output.join("");
+}
+</script>
+
+</body>
+</html>
