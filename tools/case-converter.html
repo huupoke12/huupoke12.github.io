@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Case Converter</title>
+</head>
+<body>
+
+	<div>
+		<p>Input:</p>
+		<textarea id="input" autofocus="" rows="16" cols="128">
+		</textarea>
+		<p>Output:</p>
+		<textarea id="output" rows="16" cols="128">
+		</textarea>
+	</div>
+	<hr>
+	<div>
+		<button onclick="convertCase('alternating')">Alternating case</button>
+		<button onclick="convertCase('random')">Random case</button>
+		<br>
+		<button onclick="clearAllText()">Clear all text</button>
+		<button onclick="copyToClipboard()">Copy to clipboard</button>
+	</div>
+
+
+	<script>
+		let input_DOM = document.getElementById('input');
+		let output_DOM = document.getElementById('output');
+
+		function clearAllText() {
+			input_DOM.value = '';
+			output_DOM.value = '';
+		}
+
+		function copyToClipboard() {
+			output_DOM.select();
+			document.execCommand('copy');
+		}
+
+		function convertCase(algorithm) {
+			let input = input_DOM.value;
+			let output = [];
+			switch (algorithm) {
+				case 'alternating':
+					for (let i = 0; i < input.length; i++) {
+						if (i % 2 == 0) {
+							output.push(input[i].toLowerCase());
+						} else {
+							output.push(input[i].toUpperCase());
+						}
+					}
+					break;
+				case 'random':
+					for (let i = 0; i < input.length; i++) {
+						if (Math.random() < 0.5) {
+							output.push(input[i].toLowerCase());
+						} else {
+							output.push(input[i].toUpperCase());
+						}
+					}
+					break;
+				default:
+					break;
+			}
+			output_DOM.value = output.join("");
+		}
+	</script>
+
+</body>
+</html>
